@@ -14,7 +14,7 @@ const Chat = new Schema({
     required: true,
   },
 
-  messageId: {
+  messagesId: {
     type: [ObjectId],
     required: true,
     default: undefined,
