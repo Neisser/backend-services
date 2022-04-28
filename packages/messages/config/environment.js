@@ -1,24 +1,15 @@
-const dotenv = require('dotenv');
 const { join } = require('path');
 
+// Internal dependencies
 const { supportedEnvs } = require('../src/utils/constants');
 
-let environment;
 let path;
-const filename = '.env';
+const filename = '.env.';
 
-switch (process.env.NODE_ENV) {
-  case supportedEnvs.PRODUCTION: {
-    environment = '';
-    path = `/src/${filename}`;
-    break;
-  }
-  default: {
-    environment = 'DEV_';
-    path = `${join(__dirname, '../../..')}/${filename}`;
-  }
+if (process.env.NODE_ENV === supportedEnvs.PRODUCTION) {
+  path = `/src/${filename}${process.env.NODE_ENV}`;
+} else {
+  path = `${join(__dirname, '../../..')}/${filename}${process.env.NODE_ENV}`;
 }
 
-dotenv.config({ path });
-
-module.exports = environment;
+module.exports = path;

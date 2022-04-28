@@ -1,7 +1,14 @@
-const prefix = require('./environment');
+// External dependencies
+const dotenv = require('dotenv');
+
+// Internal dependencies
+const path = require('./environment');
+
+dotenv.config({ path });
 
 module.exports = {
-  uri: process.env[`${prefix}MS_MONGO_URI`],
-  user: process.env[`${prefix}MS_MONGO_USER`],
-  pass: process.env[`${prefix}MS_MONGO_PASS`],
+  uri: process.env['MESSAGES.MONGO.URI'],
+  user: process.env['MESSAGES.MONGO.USER'],
+  pass: process.env['MESSAGES.MONGO.PASS'],
+  authSource: process.env['MESSAGES.MONGO.AUTH.SOURCE'],
 };
